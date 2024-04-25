@@ -3,6 +3,24 @@ info:
   title: ''
   version: 0.0.0
 paths:
+  /api/brand/:
+    get:
+      operationId: brand_list
+      tags:
+      - brand
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Brand'
+          description: ''
   /api/category/:
     get:
       operationId: category_list
@@ -21,6 +39,24 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Category'
+          description: ''
+  /api/product/:
+    get:
+      operationId: product_list
+      tags:
+      - product
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
           description: ''
   /api/schema/:
     get:
@@ -170,6 +206,18 @@ paths:
           description: ''
 components:
   schemas:
+    Brand:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+      required:
+      - id
+      - name
     Category:
       type: object
       properties:
@@ -201,6 +249,28 @@ components:
       - name
       - rght
       - tree_id
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        brand:
+          $ref: '#/components/schemas/Brand'
+        category:
+          $ref: '#/components/schemas/Category'
+        name:
+          type: string
+          maxLength: 100
+        description:
+          type: string
+        is_digital:
+          type: boolean
+      required:
+      - brand
+      - category
+      - id
+      - name
   securitySchemes:
     basicAuth:
       type: http
