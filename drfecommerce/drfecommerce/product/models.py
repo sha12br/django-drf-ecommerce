@@ -37,10 +37,12 @@ class Product(models.Model):
     description = models.TextField(blank=True)
     is_digital = models.BooleanField(default=False)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
+    # if there is a FK reference then this field will be called brand -> brand_id
     # this means that if a brand is deleted from Brand table , corresponding products are deleted from Product table
     category = TreeForeignKey(
         Category, on_delete=models.SET_NULL, null=True, blank=True
     )
+    # category -> category_id ; since FK reference
     # null=True, blank=True -> A Product may not be a part of Category
 
     def __str__(self):
