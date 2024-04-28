@@ -1,6 +1,9 @@
 from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
 
+
+# OopCompanion:suppressRename
+
 # Create your models here.
 
 

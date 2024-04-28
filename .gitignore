@@ -1,4 +1,4 @@
-venv/
+.venv/
 .env
 **__pycache__/
 .pytest_cache
@@ -6,3 +6,5 @@ venv/
 db.sqlite3
 schema.yml
 .42c
+htmlcov/
+.coverage
